@@ -126,23 +126,23 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        OnOff();
+        //OnOff();
     }
 
     /* * * * * * * * * * 아이템 테스트 * * * * * * * * * */
 
-    void OnOff()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if(transform.gameObject.activeSelf)
-            {
-                this.gameObject.SetActive(false);
-            }
-            else
-            {
-                this.gameObject.SetActive(true);
-            }
-        }
-    }
+    //void OnOff()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.I))
+    //    {
+    //        if(transform.gameObject.activeSelf)
+    //        {
+    //            this.gameObject.SetActive(false);
+    //        }
+    //        else
+    //        {
+    //            this.gameObject.SetActive(true);
+    //        }
+    //    }
+    //}
 }
