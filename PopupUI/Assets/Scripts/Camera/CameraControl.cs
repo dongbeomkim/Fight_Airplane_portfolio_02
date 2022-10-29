@@ -2,8 +2,15 @@
 
 public class CameraControl : MonoBehaviour
 {
+    Transform player;
+    Vector3 offset = Vector3.zero;
+    float speed = 3.0f;
+
     private void Awake()
     {
+        player = FindObjectOfType<PlayerController>().transform;
+        offset = transform.position - player.transform.position;
+
         Camera cam = GetComponent<Camera>();
 
         //카메라 컴포넌트의 Viewport Rect
@@ -26,5 +33,13 @@ public class CameraControl : MonoBehaviour
         }
 
         cam.rect = rt;
+    }
+
+    private void Update()
+    {
+        if (player != null)
+        {
+            transform.position = Vector3.Lerp(transform.position, player.position + offset, speed * Time.fixedDeltaTime);
+        }
     }
 }
