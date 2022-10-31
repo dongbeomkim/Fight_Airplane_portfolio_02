@@ -6,7 +6,7 @@ using UnityEngine;
 public class BasicCannon : MonoBehaviour
 {
     /* * * * * * * * * * 기본 총알 속도 * * * * * * * * * */
-    float bulletSpeed = 1f;
+    float bulletSpeed = 0.5f;
 
 
     /* * * * * * * * * * 기본 총알 유지 시간 * * * * * * * * * */

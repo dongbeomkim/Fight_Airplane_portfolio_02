@@ -48,6 +48,9 @@ public class PlayerController : MonoBehaviour
     {
         
     }
+    /* * * * * * * * * * 플레이어 연료 * * * * * * * * * */
+    float fuel = 10f;
+    public float Fuel => fuel;
 
     /* * * * * * * * * * 플레이어 움직이는 기능 * * * * * * * * * */
     float playerMoveSpeed = 0.15f;
@@ -71,6 +74,7 @@ public class PlayerController : MonoBehaviour
     /* * * * * * * * * * 플레이어 피격 * * * * * * * * * */
 
     float hp = 10f;
+    public float Hp => hp;
 
     public void GetDamage(float damage)
     {

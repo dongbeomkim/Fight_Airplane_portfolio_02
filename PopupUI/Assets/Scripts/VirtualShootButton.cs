@@ -19,14 +19,12 @@ public class VirtualShootButton : MonoBehaviour, IPointerDownHandler, IPointerUp
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("´©¸§");
         playerController.Attack();
         lever.color = new Color(0.3f, 0.3f, 0.5f, 1);
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("¶«");
         lever.color = new Color(0.3f, 0.3f, 0.5f, 0.5f);
     }
 

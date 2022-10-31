@@ -1,8 +1,9 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using UnityEditor;
 using UnityEngine;
-using static UnityEditor.Progress;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -37,11 +38,18 @@ public class Inventory : MonoBehaviour
     {
         slots = slotParent.GetComponentsInChildren<Slot>();
         eqiupSlot = equipmentslotParent.GetComponentInChildren<EquipmentSlot>();
+        
     }
-
+    
     private void Awake()
     {
+        
         FreshSlot();
+    }
+
+    private void Start()
+    {
+        equipmentslotParent.gameObject.SetActive(false);
     }
 
     //아이템이 들어오거나 나가면 Slot의 내용을 다시 정리해서 화면에 보여주는 역할
@@ -126,23 +134,7 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        OnOff();
+        
     }
 
-    /* * * * * * * * * * 아이템 테스트 * * * * * * * * * */
-
-    void OnOff()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if(equipmentslotParent.gameObject.activeSelf)
-            {
-                equipmentslotParent.gameObject.SetActive(false);
-            }
-            else
-            {
-                equipmentslotParent.gameObject.SetActive(true);
-            }
-        }
-    }
 }
