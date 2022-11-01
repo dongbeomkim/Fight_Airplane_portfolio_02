@@ -37,7 +37,7 @@ public class BasicCannon : MonoBehaviour
     {
         if(other.CompareTag("Enemy"))
         {
-            other.gameObject.GetComponent<BasicEnemy>().GetDamage(bulletPower);
+            other.gameObject.GetComponent<Enemy>().GetDamage(bulletPower);
             Extinction();
         }
         else if(other.CompareTag("Ground"))

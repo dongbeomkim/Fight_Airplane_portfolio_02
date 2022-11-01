@@ -47,10 +47,7 @@ public class Inventory : MonoBehaviour
         FreshSlot();
     }
 
-    private void Start()
-    {
-        equipmentslotParent.gameObject.SetActive(false);
-    }
+    
 
     //아이템이 들어오거나 나가면 Slot의 내용을 다시 정리해서 화면에 보여주는 역할
     public void FreshSlot()
@@ -131,6 +128,17 @@ public class Inventory : MonoBehaviour
             Debug.Log($"{item.itemName}");
         }
     }
+
+
+    /* * * * * * * * * * 메뉴UI * * * * * * * * * */
+
+
+
+    private void Start()
+    {
+        equipmentslotParent.gameObject.SetActive(false);
+    }
+
 
     private void Update()
     {

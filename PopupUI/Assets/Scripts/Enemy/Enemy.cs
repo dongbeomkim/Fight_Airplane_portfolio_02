@@ -2,21 +2,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.LightProbeProxyVolume;
+using UnityEngine.AI;
 
-public class BasicEnemy : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    /* * * * * * * * * * 큰 범위 변수 선언 * * * * * * * * * */
-    float hp = 10f;
-    PlayerController playerController;
 
+    /* * * * * * * * * * 큰 범위 변수 선언 * * * * * * * * * */
+    public NavMeshAgent nvAgent;
+    public GameObject player;
+
+    public float speed = 2f;
 
     /* * * * * * * * * * 점수 * * * * * * * * * */
     float thisEnemyScore = 0.1f;
 
     void Start()
     {
-        playerController = FindObjectOfType<PlayerController>();
+        nvAgent = GetComponent<NavMeshAgent>();
     }
 
     
@@ -26,6 +28,8 @@ public class BasicEnemy : MonoBehaviour
     }
 
     /* * * * * * * * * * 피격 매서드 * * * * * * * * * */
+    float hp = 10f;
+
     public void GetDamage(float damage)
     {
         hp -= damage;
@@ -38,7 +42,7 @@ public class BasicEnemy : MonoBehaviour
         if(hp <= 0)
         {
             hp = 0;
-            playerController.Score += thisEnemyScore;
+            //player.Score += thisEnemyScore;
             Destroy(gameObject);
         }
     }
