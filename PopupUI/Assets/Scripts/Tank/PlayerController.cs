@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
 
 
     /* * * * * * * * * * 플레이어의 총 점수 * * * * * * * * * */
-    float score = 0;
+    int score = 0;
 
-    public float Score
+    public int Score
     {
         get => score;
         set
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     /* * * * * * * * * * 플레이어의 레벨 * * * * * * * * * */
     int level = 1;
+
 
     private void Awake()
     {

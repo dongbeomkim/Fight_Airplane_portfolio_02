@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     public Vector3 Pos;
 
     /* * * * * * * * * * Á¡¼ö * * * * * * * * * */
-    float thisEnemyScore = 0.1f;
+    int Score = 1;
 
     void Start()
     {
