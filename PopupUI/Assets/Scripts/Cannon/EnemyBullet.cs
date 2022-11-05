@@ -3,25 +3,20 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BasicCannon : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     /* * * * * * * * * * ±âº» ÃÑ¾Ë ¼Óµµ * * * * * * * * * */
-    float bulletSpeed = 0.3f;
+    float bulletSpeed = 0.1f;
 
 
     /* * * * * * * * * * ±âº» ÃÑ¾Ë À¯Áö ½Ã°£ * * * * * * * * * */
     float bulletTime = 5f;
 
     /* * * * * * * * * * ±âº» ÃÑ¾Ë °ø°Ý·Â * * * * * * * * * */
-    float bulletPower = 5f;
-
-
-    /* * * * * * * * * * ±âº» ÃÑ¾Ë Æø¹ß * * * * * * * * * */
-    ParticleSystem explosionPrefab;
+    float bulletPower = 1f;
 
     void Start()
     {
-        explosionPrefab = transform.GetChild(0).GetComponent<ParticleSystem>();
         Invoke("Extinction", bulletTime);
     }
 
@@ -35,12 +30,12 @@ public class BasicCannon : MonoBehaviour
     /* * * * * * * * * * ±âº» ÃÑ¾Ë ÇÇ°Ý * * * * * * * * * */
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if (other.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<Enemy>().GetDamage(bulletPower);
+            other.gameObject.GetComponent<PlayerController>().GetDamage(bulletPower);
             Extinction();
         }
-        else if(other.CompareTag("Ground"))
+        else if (other.CompareTag("Ground"))
         {
             Extinction();
         }
@@ -50,7 +45,6 @@ public class BasicCannon : MonoBehaviour
     /* * * * * * * * * * ±âº» ÃÑ¾Ë ÆÄ±« * * * * * * * * * */
     private void Extinction()
     {
-       explosionPrefab.Play();
-       Destroy(gameObject, 1f);
+        Destroy(gameObject);
     }
 }

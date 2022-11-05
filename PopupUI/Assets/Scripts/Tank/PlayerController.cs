@@ -52,6 +52,9 @@ public class PlayerController : MonoBehaviour
     float fuel = 10f;
     public float Fuel => fuel;
 
+    float maxFuel = 10f;
+    public float MaxFuel => maxFuel;
+
     /* * * * * * * * * * 플레이어 움직이는 기능 * * * * * * * * * */
     float playerMoveSpeed = 0.15f;
 
@@ -75,6 +78,9 @@ public class PlayerController : MonoBehaviour
 
     float hp = 10f;
     public float Hp => hp;
+
+    float maxHp = 10f;
+    public float MaxHp => maxHp;
 
     public void GetDamage(float damage)
     {

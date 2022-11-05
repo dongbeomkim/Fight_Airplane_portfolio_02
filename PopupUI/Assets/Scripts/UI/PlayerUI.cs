@@ -26,7 +26,7 @@ public class PlayerUI : MonoBehaviour
     
     void Update()
     {
-        hp.value = player.Hp;
-        fuel.value = player.Fuel;
+        hp.value = player.Hp/player.MaxHp;
+        fuel.value = player.Fuel/player.MaxFuel;
     }
 }

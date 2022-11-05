@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.PlayerSettings;
 
 public class Enemy : MonoBehaviour
 {
@@ -13,11 +14,14 @@ public class Enemy : MonoBehaviour
 
     public float speed = 2f;
 
+    public Vector3 Pos;
+
     /* * * * * * * * * * 점수 * * * * * * * * * */
     float thisEnemyScore = 0.1f;
 
     void Start()
     {
+        Pos = transform.position;
         nvAgent = GetComponent<NavMeshAgent>();
     }
 
@@ -25,6 +29,20 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         
+    }
+
+    /* * * * * * * * * * 공격 매서드 * * * * * * * * * */
+    public GameObject bullet;
+    public Transform firePos;
+
+    public void Attack()
+    {
+        InvokeRepeating("FireBullet", 1f, 1f);
+    }
+
+    void FireBullet()
+    {
+        GameObject bulletcopy = Instantiate(bullet, firePos.position, firePos.transform.rotation);
     }
 
     /* * * * * * * * * * 피격 매서드 * * * * * * * * * */

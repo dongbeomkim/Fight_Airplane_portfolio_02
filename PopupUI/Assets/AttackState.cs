@@ -13,14 +13,16 @@ public class AttackState : StateMachineBehaviour
     {
         enemy = animator.GetComponent<Enemy>();
         enemyTransform = animator.GetComponent<Transform>();
+        enemy.Attack();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (Vector3.Distance(enemy.player.transform.position, enemyTransform.position) < 5f)
+        if (Vector3.Distance(enemy.player.transform.position, enemyTransform.position) > 5f)
         {
-            enemyTransform.LookAt(enemy.player.transform.position);
+            animator.SetBool("isfollow", true);
+            animator.SetBool("isattack", false);
         }
     }
 

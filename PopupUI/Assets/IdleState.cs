@@ -17,9 +17,15 @@ public class IdleState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(Vector3.Distance(enemyTransform.position,enemy.player.transform.position) > 20)
+        if(Vector3.Distance(enemyTransform.position, enemy.player.transform.position) < 20f)
+        {
+            animator.SetBool("isfollow", true);
+        }
+        if (Vector3.Distance(enemy.player.transform.position, enemyTransform.position) <= 5f)
         {
             animator.SetBool("isfollow", false);
+            animator.SetBool("isattack", true);
+            enemyTransform.LookAt(enemy.player.transform.position);
         }
     }
 
