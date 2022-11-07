@@ -19,16 +19,20 @@ public class AttackState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (Vector3.Distance(enemy.player.transform.position, enemyTransform.position) > 5f)
+        if(enemy.player != null)
         {
-            animator.SetBool("isfollow", true);
-            animator.SetBool("isattack", false);
+            enemy.transform.LookAt(enemy.player.transform);
+            if (Vector3.Distance(enemy.player.transform.position, enemyTransform.position) > 5f)
+            {
+                animator.SetBool("isfollow", true);
+                animator.SetBool("isattack", false);
+            }
         }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        enemy.StopAttack();
     }
 }

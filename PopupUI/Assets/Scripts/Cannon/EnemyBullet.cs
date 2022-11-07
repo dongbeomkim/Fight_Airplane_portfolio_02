@@ -13,10 +13,11 @@ public class EnemyBullet : MonoBehaviour
     float bulletTime = 5f;
 
     /* * * * * * * * * * 기본 총알 공격력 * * * * * * * * * */
-    float bulletPower = 1f;
+    float bulletPower = 0;
 
     void Start()
     {
+        bulletPower = 1f * GameManager.Instance.gameRound;
         Invoke("Extinction", bulletTime);
     }
 

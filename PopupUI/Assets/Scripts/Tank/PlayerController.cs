@@ -1,4 +1,6 @@
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -6,25 +8,24 @@ public class PlayerController : MonoBehaviour
     Rigidbody rigid;
     Inventory inventory;
 
+    /* * * * * * * * * * 플레이어의 레벨 * * * * * * * * * */
+    public int level = 1;
 
-    /* * * * * * * * * * 플레이어의 총 점수 * * * * * * * * * */
-    int score = 0;
-
-    public int Score
+    float exp = 0;
+    public float Exp
     {
-        get => score;
+        get => exp;
         set
         {
-            if(score != value)
+            if (exp != value)
             {
-                score = value;
-                Debug.Log($"{score}");
+                exp = value;
             }
         }
     }
 
-    /* * * * * * * * * * 플레이어의 레벨 * * * * * * * * * */
-    int level = 1;
+    float maxExp = 10;
+    public float MaxExp => maxExp;
 
 
     private void Awake()
@@ -35,13 +36,17 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
+        panelty = GameManager.Instance.gameRound;
     }
 
 
     /* * * * * * * * * * 플레이어의 간접적인 움직임 기능만 * * * * * * * * * */
+    int panelty;
+
     void Update()
     {
-        
+        hp -= Time.deltaTime * 0.1f * panelty;
+        Dead(hp);
     }
 
     /* * * * * * * * * * 플레이어의 직접적인 움직임 기능만 * * * * * * * * * */
@@ -49,6 +54,8 @@ public class PlayerController : MonoBehaviour
     {
         
     }
+
+
     /* * * * * * * * * * 플레이어 연료 * * * * * * * * * */
     float fuel = 10f;
     public float Fuel => fuel;
@@ -78,7 +85,14 @@ public class PlayerController : MonoBehaviour
     /* * * * * * * * * * 플레이어 피격 * * * * * * * * * */
 
     float hp = 10f;
-    public float Hp => hp;
+    public float Hp
+    {
+        get => hp;
+        set
+        {
+            hp = value;
+        }
+    }
 
     float maxHp = 10f;
     public float MaxHp => maxHp;
@@ -86,7 +100,6 @@ public class PlayerController : MonoBehaviour
     public void GetDamage(float damage)
     {
         hp -= damage;
-        Dead(hp);
     }
 
     /* * * * * * * * * * 죽음 매서드 * * * * * * * * * */
@@ -95,9 +108,13 @@ public class PlayerController : MonoBehaviour
         if (hp <= 0)
         {
             hp = 0;
+            SceneManager.LoadScene("GameOver");
             Destroy(gameObject);
         }
     }
+
+    
+
 
 
     /* * * * * * * * * * 아이템 획득 * * * * * * * * * */

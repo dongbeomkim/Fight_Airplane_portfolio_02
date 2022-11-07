@@ -17,19 +17,22 @@ public class RunState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if(Vector3.Distance(enemy.player.transform.position, enemyTransform.position) > 20f)
+        if(enemy.player != null)
         {
-            animator.SetBool("isfollow", false);
-            enemy.nvAgent.SetDestination(enemy.Pos);
-        }
-        else if(Vector3.Distance(enemy.player.transform.position, enemyTransform.position) > 5f)
-        {
-            animator.SetBool("isfollow", true);
-            enemy.nvAgent.SetDestination(enemy.player.transform.position);
-        }
-        else if(Vector3.Distance(enemy.player.transform.position, enemyTransform.position) <= 5f)
-        {
-            animator.SetBool("isfollow", false);
+            if(Vector3.Distance(enemy.player.transform.position, enemyTransform.position) > 20f)
+            {
+                animator.SetBool("isfollow", false);
+                enemy.nvAgent.SetDestination(enemy.Pos);
+            }
+            else if(Vector3.Distance(enemy.player.transform.position, enemyTransform.position) > 5f)
+            {
+                animator.SetBool("isfollow", true);
+                enemy.nvAgent.SetDestination(enemy.player.transform.position);
+            }
+            else if(Vector3.Distance(enemy.player.transform.position, enemyTransform.position) <= 5f)
+            {
+                animator.SetBool("isfollow", false);
+            }
         }
     }
 

@@ -8,17 +8,18 @@ public class Score : MonoBehaviour
 {
 
     Text score;
-
+    int scoreindex;
 
 
     void Start()
     {
         score = GetComponent<Text>();
+        scoreindex = (int)GameManager.Instance.playTime;
     }
 
     
     void Update()
     {
-        
+        score.text = scoreindex.ToString();
     }
 }

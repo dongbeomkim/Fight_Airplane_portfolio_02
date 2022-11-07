@@ -16,13 +16,15 @@ public class Enemy : MonoBehaviour
 
     public Vector3 Pos;
 
-    /* * * * * * * * * * 점수 * * * * * * * * * */
-    int Score = 1;
+    /* * * * * * * * * * 경험치 * * * * * * * * * */
+    float score = 1f;
 
     void Start()
     {
+        player = FindObjectOfType<PlayerController>().gameObject;
         Pos = transform.position;
         nvAgent = GetComponent<NavMeshAgent>();
+        hp = 10 * GameManager.Instance.gameRound;
     }
 
     
@@ -45,8 +47,13 @@ public class Enemy : MonoBehaviour
         GameObject bulletcopy = Instantiate(bullet, firePos.position, firePos.transform.rotation);
     }
 
+    public void StopAttack()
+    {
+        CancelInvoke("FireBullet");
+    }
+
     /* * * * * * * * * * 피격 매서드 * * * * * * * * * */
-    float hp = 10f;
+    float hp = 0;
 
     public void GetDamage(float damage)
     {
@@ -60,7 +67,8 @@ public class Enemy : MonoBehaviour
         if(hp <= 0)
         {
             hp = 0;
-            //player.Score += thisEnemyScore;
+            GameManager.Instance.playTime += score;
+            GameManager.Instance.Player.Hp += 1f;
             Destroy(gameObject);
         }
     }
