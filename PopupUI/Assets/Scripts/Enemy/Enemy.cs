@@ -54,6 +54,7 @@ public class Enemy : MonoBehaviour
 
     /* * * * * * * * * * 피격 매서드 * * * * * * * * * */
     float hp = 0;
+    public float HP => hp;
 
     public void GetDamage(float damage)
     {
@@ -62,14 +63,14 @@ public class Enemy : MonoBehaviour
     }
 
     /* * * * * * * * * * 죽음 매서드 * * * * * * * * * */
-    void Dead(float damage)
+    public void Dead(float damage)
     {
         if(hp <= 0)
         {
-            hp = 0;
             GameManager.Instance.playTime += score;
             GameManager.Instance.Player.Hp += 1f;
-            Destroy(gameObject);
+            transform.tag = "Ground";
+            nvAgent.isStopped = true;
         }
     }
 }

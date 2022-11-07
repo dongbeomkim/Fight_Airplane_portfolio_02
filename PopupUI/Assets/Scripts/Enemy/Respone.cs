@@ -14,7 +14,7 @@ public class Respone : MonoBehaviour
 
     void Produce()
     {
-        Instantiate(respone, transform);
+        Instantiate(respone, transform.position + new Vector3(0,1f,0), Quaternion.identity);
     }
 
 

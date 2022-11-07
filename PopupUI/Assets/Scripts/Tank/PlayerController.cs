@@ -108,6 +108,7 @@ public class PlayerController : MonoBehaviour
         if (hp <= 0)
         {
             hp = 0;
+            
             SceneManager.LoadScene("GameOver");
             Destroy(gameObject);
         }

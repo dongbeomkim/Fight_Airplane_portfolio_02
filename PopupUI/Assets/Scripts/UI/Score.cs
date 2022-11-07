@@ -14,7 +14,7 @@ public class Score : MonoBehaviour
     void Start()
     {
         score = GetComponent<Text>();
-        scoreindex = (int)GameManager.Instance.playTime;
+        scoreindex = (int)GameManager.Instance.FinalScore;
     }
 
     

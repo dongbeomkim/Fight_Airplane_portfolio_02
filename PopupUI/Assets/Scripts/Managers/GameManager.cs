@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     /* * * * * * * * * * 게임라운드 및 플레이 시간 * * * * * * * * * */
     public float playTime = 0f;
     public int gameRound = 1;
+    public float FinalScore = 0;
 
     /* * * * * * * * * * 플레이어의 총 점수 * * * * * * * * * */
     int score = 0;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
 
     private void Awake()
     {
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
     {
         playTime = 0;
         gameRound = 1;
+        player.level = 1;
     }
 
 
@@ -73,5 +76,6 @@ public class GameManager : MonoBehaviour
         {
             gameRound++;
         }
+        FinalScore = playTime;
     }
 }

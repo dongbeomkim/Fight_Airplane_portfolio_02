@@ -31,6 +31,11 @@ public class IdleState : StateMachineBehaviour
             }
         }
 
+
+        if (enemy.HP <= 0f)
+        {
+            animator.SetBool("isdie", true);
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
