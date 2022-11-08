@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class SAEOnOffUI : MonoBehaviour, IPointerDownHandler
 {
 
-    /* * * * * * * * * * 메뉴UI * * * * * * * * * */
+    /* * * * * * * * * * 스탯/장비 UI * * * * * * * * * */
     
     Inventory inventory;
     GameObject sae;
@@ -33,10 +33,12 @@ public class SAEOnOffUI : MonoBehaviour, IPointerDownHandler
         if(sae.gameObject.activeSelf)
         {
             sae.SetActive(false);
+            Time.timeScale = 1;
         }
         else
         {
             sae.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 }

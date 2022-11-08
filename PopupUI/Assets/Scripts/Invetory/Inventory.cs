@@ -117,7 +117,7 @@ public class Inventory : MonoBehaviour
                 Debug.Log("이미 장비 슬롯에 장비가 있습니다.");
             }
         }
-        else if(item.Expendables)
+        else if(item.expendables)
         {
 
             Debug.Log($"{item.itemName} 사용");

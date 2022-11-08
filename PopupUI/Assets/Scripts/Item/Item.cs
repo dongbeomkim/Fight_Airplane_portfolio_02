@@ -5,8 +5,10 @@ using UnityEngine;
 public class Item : ScriptableObject
 {
     public bool equipment;
-    public bool Expendables;
+    public bool expendables;
     public string itemName;
     public Sprite itemImage;
     public GameObject itemPrefab;
+    public int attackPower;
+    public int fixtank;
 }

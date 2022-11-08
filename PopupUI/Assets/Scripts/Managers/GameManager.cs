@@ -72,7 +72,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         playTime += Time.deltaTime + Score;
-        if(playTime >= gameRound * 10)
+        if(playTime >= gameRound * 20)
         {
             gameRound++;
         }

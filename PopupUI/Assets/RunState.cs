@@ -19,17 +19,17 @@ public class RunState : StateMachineBehaviour
     {
         if(enemy.player != null)
         {
-            if(Vector3.Distance(enemy.player.transform.position, enemyTransform.position) > 20f)
+            if(Vector3.Distance(enemy.player.transform.position, enemyTransform.position) > 60f)
             {
                 animator.SetBool("isfollow", false);
                 enemy.nvAgent.SetDestination(enemy.Pos);
             }
-            else if(Vector3.Distance(enemy.player.transform.position, enemyTransform.position) > 5f)
+            else if(Vector3.Distance(enemy.player.transform.position, enemyTransform.position) > 15f)
             {
                 animator.SetBool("isfollow", true);
                 enemy.nvAgent.SetDestination(enemy.player.transform.position);
             }
-            else if(Vector3.Distance(enemy.player.transform.position, enemyTransform.position) <= 5f)
+            else if(Vector3.Distance(enemy.player.transform.position, enemyTransform.position) <= 15f)
             {
                 animator.SetBool("isfollow", false);
             }

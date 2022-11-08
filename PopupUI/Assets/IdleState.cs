@@ -19,11 +19,11 @@ public class IdleState : StateMachineBehaviour
     {
         if(enemy.player != null)
         {
-            if(Vector3.Distance(enemyTransform.position, enemy.player.transform.position) < 20f)
+            if(Vector3.Distance(enemyTransform.position, enemy.player.transform.position) < 60f)
             {
                 animator.SetBool("isfollow", true);
             }
-            if (Vector3.Distance(enemy.player.transform.position, enemyTransform.position) <= 5f)
+            if (Vector3.Distance(enemy.player.transform.position, enemyTransform.position) <= 15f)
             {
                 animator.SetBool("isfollow", false);
                 animator.SetBool("isattack", true);

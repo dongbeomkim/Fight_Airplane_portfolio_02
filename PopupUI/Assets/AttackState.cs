@@ -22,7 +22,7 @@ public class AttackState : StateMachineBehaviour
         if(enemy.player != null)
         {
             enemy.transform.LookAt(enemy.player.transform);
-            if (Vector3.Distance(enemy.player.transform.position, enemyTransform.position) > 5f)
+            if (Vector3.Distance(enemy.player.transform.position, enemyTransform.position) > 15f)
             {
                 animator.SetBool("isfollow", true);
                 animator.SetBool("isattack", false);
