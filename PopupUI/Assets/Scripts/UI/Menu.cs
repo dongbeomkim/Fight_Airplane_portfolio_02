@@ -11,7 +11,7 @@ public class Menu : MonoBehaviour, IPointerDownHandler
 
     void Start()
     {
-        smallMenu = transform.GetChild(1).gameObject;
+        smallMenu = GameObject.Find("SmallMenu");
         smallMenu.SetActive(false);
     }
 

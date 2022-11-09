@@ -7,13 +7,11 @@ public class SAEOnOffUI : MonoBehaviour, IPointerDownHandler
 
     /* * * * * * * * * * Ω∫≈»/¿Â∫Ò UI * * * * * * * * * */
     
-    Inventory inventory;
     GameObject sae;
 
     private void Awake()
     {
-        inventory = GetComponentInParent<Inventory>();
-        sae = inventory.transform.GetChild(1).gameObject;
+        sae = GameObject.Find("StateAndEquipment");
     }
 
     void Start()
