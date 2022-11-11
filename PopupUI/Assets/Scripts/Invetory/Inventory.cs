@@ -110,7 +110,6 @@ public class Inventory : MonoBehaviour
                 equipment.Add(item);
                 items.Remove(item);
                 FreshSlot();
-                Debug.Log($"{item.itemName} ÀåÂø");
             }
             else
             {
@@ -119,8 +118,9 @@ public class Inventory : MonoBehaviour
         }
         else if(item.expendables)
         {
-
-            Debug.Log($"{item.itemName} »ç¿ë");
+            GameManager.Instance.Player.Hp += item.fixtank;
+            items.Remove(item);
+            FreshSlot();
         }
         else
         {

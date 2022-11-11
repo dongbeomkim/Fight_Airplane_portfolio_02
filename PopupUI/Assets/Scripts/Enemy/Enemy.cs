@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEditor.PlayerSettings;
+using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour
 {
@@ -71,6 +72,20 @@ public class Enemy : MonoBehaviour
             GameManager.Instance.Player.Hp += 1f;
             transform.tag = "Ground";
             nvAgent.isStopped = true;
+            ItemDrop();
+            Destroy(gameObject, 1f);
         }
     }
+
+    void ItemDrop()
+    {
+        float randomSelect = Random.Range(0.0f, 1.0f);
+
+        if(randomSelect < 0.5f)
+        {
+            GameObject obj = Resources.Load("Item/FixHammer") as GameObject;
+            Instantiate(obj, transform.position, Quaternion.identity);
+        }
+    }
+    
 }

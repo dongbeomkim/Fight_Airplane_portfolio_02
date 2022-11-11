@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
         {
             Item item = other.GetComponent<ObjectItem>().item;
             inventory.AddItem(item);
-            Debug.Log($"{item.itemName}을 습득했습니다.");
+            Destroy(other.gameObject);
         }
     }
 }
