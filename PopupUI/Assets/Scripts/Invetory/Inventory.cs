@@ -1,10 +1,6 @@
-using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -19,6 +15,7 @@ public class Inventory : MonoBehaviour
     //Bag의 하위에 등록된 슬롯들을 담을 곳
     [SerializeField]
     Slot[] slots;
+
 
 
     /* * * * * * * * * * 장비슬롯 * * * * * * * * * */
@@ -41,10 +38,20 @@ public class Inventory : MonoBehaviour
         eqiupSlot = equipmentslotParent.GetComponentInChildren<EquipmentSlot>();
         
     }
-    
+
+    /* * * * * * * * * * 장비슬롯UI * * * * * * * * * */
+    Text itemName;
+    Text bulletState;
+    string nullItem = "빈 장비 슬롯";
+    string nullState = "00";
+
     private void Awake()
     {
         FreshSlot();
+        itemName = transform.GetChild(1).GetChild(1).GetComponent<Text>();
+        bulletState = transform.GetChild(1).GetChild(3).GetComponent<Text>();
+        itemName.text = nullItem;
+        bulletState.text = nullState;
     }
 
     
@@ -99,6 +106,11 @@ public class Inventory : MonoBehaviour
         //플레이어가 가진 대포알 쪽도 null주기
         GameManager.Instance.Player.OffNewBullet();
 
+        //UI
+        itemName.text = nullItem;
+        bulletState.text = nullState;
+
+
         eqiupSlot.Item = null;
         items.Add(item);
 
@@ -115,6 +127,10 @@ public class Inventory : MonoBehaviour
                 equipment.Add(item);
                 GameManager.Instance.Player.OnNewBullet();
 
+                //UI
+                itemName.text = item.itemName;
+                bulletState.text = item.attackPower.ToString();
+
                 items.Remove(item);
                 
                 FreshSlot();
@@ -130,27 +146,13 @@ public class Inventory : MonoBehaviour
             items.Remove(item);
             FreshSlot();
         }
-        else
-        {
-
-            Debug.Log($"{item.itemName}");
-        }
     }
 
 
     /* * * * * * * * * * 메뉴UI * * * * * * * * * */
-
-
-
     private void Start()
     {
         equipmentslotParent.gameObject.SetActive(false);
-    }
-
-
-    private void Update()
-    {
-        
     }
 
 }

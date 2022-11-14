@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         panelty = GameManager.Instance.gameRound;
+        GameObject obj = Resources.Load("Bullets/BasicBullet") as GameObject;
+        inventory.AddItem(obj.GetComponent<ObjectItem>().item);
     }
 
 
