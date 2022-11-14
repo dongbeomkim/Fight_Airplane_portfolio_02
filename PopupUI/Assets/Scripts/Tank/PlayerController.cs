@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     /* * * * * * * * * * 큰 범위 변수 선언 * * * * * * * * * */
-    Rigidbody rigid;
     Inventory inventory;
 
     /* * * * * * * * * * 플레이어의 레벨 * * * * * * * * * */
@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rigid = GetComponent<Rigidbody>();
         panelty = GameManager.Instance.gameRound;
     }
 
@@ -73,13 +72,41 @@ public class PlayerController : MonoBehaviour
     }
 
     /* * * * * * * * * * 플레이어 공격 * * * * * * * * * */
-    public GameObject bullet;
+    GameObject bullet;
     public Transform firePos;
 
+    float power = 0;
+    public float Power
+    {
+        get => power;
+        set
+        {
+            power = value;
+        }
+    }
+
+    public void OnNewBullet()
+    {
+        bullet = inventory.equipment[0].itemPrefab;
+        Power = inventory.equipment[0].attackPower;
+    }
+
+    public void OffNewBullet()
+    {
+        bullet = null;
+        Power = 0;
+    }
 
     public void Attack()
     {
-        GameObject bulletcopy = Instantiate(bullet, firePos.position, firePos.transform.rotation);
+        if(bullet != null)
+        {
+            GameObject bulletcopy = Instantiate(bullet, firePos.position, firePos.transform.rotation);
+        }
+        else
+        {
+            Debug.Log("공격에 필요한 대포알을 장착하십시오.");
+        }
     }
 
     /* * * * * * * * * * 플레이어 피격 * * * * * * * * * */
@@ -91,6 +118,10 @@ public class PlayerController : MonoBehaviour
         set
         {
             hp = value;
+            if(hp > maxHp)
+            {
+                hp = maxHp;
+            }
         }
     }
 

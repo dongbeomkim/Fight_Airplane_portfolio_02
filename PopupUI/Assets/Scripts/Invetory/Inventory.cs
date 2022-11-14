@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class Inventory : MonoBehaviour
 {
@@ -43,7 +44,6 @@ public class Inventory : MonoBehaviour
     
     private void Awake()
     {
-        
         FreshSlot();
     }
 
@@ -93,11 +93,16 @@ public class Inventory : MonoBehaviour
     //장비아이템슬롯
     public void EquipSlotItem(Item item)
     {
+        //데이터 부분 빼기
         equipment.Remove(item);
+
+        //플레이어가 가진 대포알 쪽도 null주기
+        GameManager.Instance.Player.OffNewBullet();
+
         eqiupSlot.Item = null;
         items.Add(item);
+
         FreshSlot();
-        Debug.Log($"{item.itemName} 해제");
     }
 
     //소비아이템
@@ -108,7 +113,10 @@ public class Inventory : MonoBehaviour
             if(eqiupSlot.Item == null)
             {
                 equipment.Add(item);
+                GameManager.Instance.Player.OnNewBullet();
+
                 items.Remove(item);
+                
                 FreshSlot();
             }
             else
